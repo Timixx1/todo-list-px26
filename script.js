@@ -34,7 +34,16 @@ todoForm.addEventListener("submit", (event) => {
         todoItem.dataset.status = status.value;
     });
 
-    todoItem.append(text, status);
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "todo-delete";
+    deleteButton.textContent = "×";
+    deleteButton.setAttribute("aria-label", `Delete ${taskText}`);
+    deleteButton.addEventListener("click", () => {
+        todoItem.remove();
+    });
+
+    todoItem.append(text, status, deleteButton);
     todoList.append(todoItem);
     todoInput.value = "";
     todoInput.focus();

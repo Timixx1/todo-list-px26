@@ -50,11 +50,33 @@ button,
 }
 
 .todo-text {
+    flex: 1;
+    min-width: 0;
     overflow-wrap: anywhere;
 }
 
 .todo-status {
     flex-shrink: 0;
+}
+
+.todo-delete {
+    flex-shrink: 0;
+    padding: 2px 8px;
+    border: 0;
+    background: transparent;
+    color: #a33;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.todo-delete:hover {
+    color: #700;
+}
+
+.todo-delete:focus-visible {
+    outline: 2px solid #a33;
+    outline-offset: 2px;
 }
 
 .todo-item[data-status="Done"] .todo-text {
