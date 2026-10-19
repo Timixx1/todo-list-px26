@@ -3,13 +3,61 @@ body {
     background-color: #f4f4f9;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    min-height: 100vh;
     margin: 0;
+    padding: 40px 16px;
+    box-sizing: border-box;
 }
+
 .todo-container {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+}
+
+.input-section {
+    display: flex;
+    gap: 8px;
+}
+
+#todo-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+}
+
+button,
+.todo-status {
+    padding: 10px;
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.todo-text {
+    overflow-wrap: anywhere;
+}
+
+.todo-status {
+    flex-shrink: 0;
+}
+
+.todo-item[data-status="Done"] .todo-text {
+    color: #666;
+    text-decoration: line-through;
 }
