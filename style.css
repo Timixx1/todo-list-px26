@@ -195,6 +195,66 @@ button:focus-visible {
     overflow-wrap: anywhere;
 }
 
+.todo-edit-input {
+    flex: 1;
+    min-width: 0;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid #52525b;
+    border-radius: 6px;
+    background: #09090b;
+    color: #fafafa;
+    font: inherit;
+    font-size: 14px;
+}
+
+.todo-edit-input:focus-visible {
+    outline: 2px solid #d4d4d8;
+    outline-offset: 2px;
+}
+
+.todo-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.todo-item [hidden] {
+    display: none;
+}
+
+.todo-edit,
+.todo-save,
+.todo-cancel {
+    min-height: 32px;
+    padding: 0 9px;
+    border: 1px solid #52525b;
+    border-radius: 6px;
+    background: #27272a;
+    color: #e4e4e7;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.todo-edit:hover,
+.todo-cancel:hover {
+    background: #3f3f46;
+    color: #fff;
+}
+
+.todo-save {
+    border-color: #fafafa;
+    background: #fafafa;
+    color: #18181b;
+}
+
+.todo-save:hover {
+    background: #e4e4e7;
+}
+
 .todo-status {
     flex-shrink: 0;
     height: 32px;
