@@ -7,16 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="todo-container">
+    <main class="todo-container">
         <h1>PX26 Todo List</h1>
-        <div class="input-section">
-            <input type="text" id="todo-input" placeholder="Add a new task...">
-            <button id="add-btn">Add</button>
-        </div>
+        <form class="input-section" id="todo-form">
+            <input type="text" id="todo-input" placeholder="Add a new task..." aria-label="New task" required>
+            <button id="add-btn" type="submit">Add</button>
+        </form>
         <ul id="todo-list">
-            <!-- Tasks will be added here dynamically -->
         </ul>
-    </div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
