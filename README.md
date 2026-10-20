@@ -1,30 +1,68 @@
 # PX26 Todo List
 
-A small task list built as a first-year team project. It lets users add tasks, change their status, and remove tasks.
+**A clean, responsive task manager built by a four-person team.**
+
+![PX26 Todo List interface illustration](https://i.ibb.co/BVW24Thw/image.png)
+
+## About
+
+PX26 Todo List is a lightweight task manager for everyday planning. Add tasks, edit their details, track progress, and switch between light and dark themes in a responsive interface.
 
 ## Features
 
-- Add a task using the text field.
-- Set each task to **To Do**, **In Progress**, or **Done**.
-- Delete a task from the list.
-- Use the layout on desktop or mobile screens.
+- **Create tasks** — add tasks using the input form.
+- **Edit tasks** — update a task while preserving its current status.
+- **Track progress** — choose To Do, In Progress, or Done.
+- **Remove tasks** — delete tasks you no longer need.
+- **Light and dark themes** — switch the interface theme.
+- **Browser storage** — tasks and theme preference are saved in local storage.
+- **Responsive layout** — use the app on desktop and mobile screens.
 
-## Built with
+## Technology stack
 
-- HTML
-- CSS
-- JavaScript
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=18181B" alt="JavaScript">
+</p>
 
-## Run the project
+| Technology | Use |
+|---|---|
+| HTML | Page structure and content |
+| CSS | Layout, responsive styling, and themes |
+| JavaScript | Task interactions and local storage |
 
-Open `index.html` in a web browser. No installation is required.
+The project uses vanilla JavaScript and requires no installation.
 
-## Project files
+## Run locally
 
-- `index.html` contains the page structure.
-- `style.css` contains the layout and visual styles.
-- `script.js` handles adding, updating, and deleting tasks.
+1. Clone or download this repository.
+2. Open `index.html` in your browser.
+3. Add your first task.
 
-Tasks (including their status) and the selected theme are saved in the browser's
-`localStorage`, so they remain after a page refresh in the same browser. Clearing
-the browser's site data removes them.
+## Team
+
+The project was created by four people:
+
+| Team member | AKA | Role |
+|---|---|---|
+| Timurs Stroganovs | Timixx | Team Lead Developer |
+| Artjoms Basalgins | basik0bas | FrontEnd Developer |
+| Damirs Skutans | damirsskutans17-lang | BackEnd Developer |
+| Vadims Cehnoveckis | - | Project Demonstrator, QA Tester |
+
+## Teacher
+
+Nikita Akopjans — [nikita.akopjans@gmail.com](mailto:nikita.akopjans@gmail.com)
+
+## Project structure
+
+| File | Purpose |
+|---|---|
+| `index.html` | Page structure and content |
+| `style.css` | Layout, responsive styles, and themes |
+| `script.js` | Task interactions and browser storage |
+
+## Repository
+
+[View PX26 Todo List on GitHub](https://github.com/Timixx1/todo-list-px26)
