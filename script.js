@@ -2,8 +2,14 @@
 const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 const todoList = document.getElementById("todo-list");
+const todoEmptyState = document.getElementById("todo-empty-state");
 const themeToggle = document.getElementById("theme-toggle");
 const themeLabel = document.querySelector(".theme-toggle-label");
+
+const updateEmptyState = () => {
+    const hasTasks = todoList.querySelector(".todo-item");
+    todoEmptyState.hidden = Boolean(hasTasks);
+};
 
 const applyTheme = (theme) => {
     document.body.dataset.theme = theme;
@@ -60,6 +66,7 @@ todoForm.addEventListener("submit", (event) => {
     deleteButton.setAttribute("aria-label", `Delete ${taskText}`);
     deleteButton.addEventListener("click", () => {
         todoItem.remove();
+        updateEmptyState();
     });
 
     const editInput = document.createElement("input");
@@ -143,6 +150,9 @@ todoForm.addEventListener("submit", (event) => {
 
     todoItem.append(text, editInput, status, actions);
     todoList.append(todoItem);
+    updateEmptyState();
     todoInput.value = "";
     todoInput.focus();
 });
+
+updateEmptyState();
