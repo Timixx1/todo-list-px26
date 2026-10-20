@@ -48,7 +48,7 @@ The project was created by four people:
 |---|---|---|
 | Timurs Stroganovs | Timixx | Team Lead Developer |
 | Artjoms Basalgins | basik0bas | FrontEnd Developer |
-| Damirs Skutans | damirsskutans17-lang | BackEnd Developer |
+| Damirs Skutans | damirsskutans17-lang | JavaScript Developer |
 | Vadims Cehnoveckis | - | Project Demonstrator, QA Tester |
 
 ## Teacher
