@@ -8,6 +8,8 @@
 
 PX26 Todo List is a lightweight task manager for everyday planning. Add tasks, edit their details, track progress, and switch between light and dark themes in a responsive interface.
 
+[Open the live app](https://timixx1.github.io/todo-list-px26/)
+
 ## Features
 
 - **Create tasks** — add tasks using the input form.
