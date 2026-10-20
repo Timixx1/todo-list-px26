@@ -6,6 +6,7 @@ const themeToggle = document.getElementById("theme-toggle");
 const themeLabel = document.querySelector(".theme-toggle-label");
 const todosStorageKey = "px26-todos";
 const validStatuses = ["To Do", "In Progress", "Done"];
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const updateEmptyState = () => {
     const hasTasks = todoList.querySelector(".todo-item");
@@ -13,7 +14,7 @@ const updateEmptyState = () => {
 };
 
 const saveTodos = () => {
-    const todos = [...todoList.querySelectorAll(".todo-item")].map((todoItem) => ({
+    const todos = [...todoList.querySelectorAll(".todo-item:not(.is-removing)")].map((todoItem) => ({
         text: todoItem.querySelector(".todo-text").textContent,
         status: todoItem.dataset.status,
     }));
@@ -21,10 +22,17 @@ const saveTodos = () => {
     localStorage.setItem(todosStorageKey, JSON.stringify(todos));
 };
 
-const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }) => {
+const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { animate = false } = {}) => {
     const todoItem = document.createElement("li");
     todoItem.className = "todo-item";
     todoItem.dataset.status = taskStatus;
+
+    if (animate && !prefersReducedMotion.matches) {
+        todoItem.classList.add("is-entering");
+        todoItem.addEventListener("animationend", () => {
+            todoItem.classList.remove("is-entering");
+        }, { once: true });
+    }
 
     const text = document.createElement("span");
     text.className = "todo-text";
@@ -53,8 +61,24 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }) => {
     deleteButton.textContent = "×";
     deleteButton.setAttribute("aria-label", `Delete ${taskText}`);
     deleteButton.addEventListener("click", () => {
-        todoItem.remove();
-        updateEmptyState();
+        if (prefersReducedMotion.matches) {
+            todoItem.remove();
+            updateEmptyState();
+            saveTodos();
+            return;
+        }
+
+        deleteButton.disabled = true;
+        todoItem.style.height = `${todoItem.offsetHeight}px`;
+        void todoItem.offsetHeight;
+        todoItem.classList.add("is-removing");
+        todoItem.style.height = "0";
+        todoItem.addEventListener("transitionend", (event) => {
+            if (event.target === todoItem && event.propertyName === "height") {
+                todoItem.remove();
+                updateEmptyState();
+            }
+        });
         saveTodos();
     });
 
@@ -190,7 +214,7 @@ todoForm.addEventListener("submit", (event) => {
         return;
     }
 
-    createTodoItem({ text: taskText });
+    createTodoItem({ text: taskText }, { animate: true });
     updateEmptyState();
     saveTodos();
     todoInput.value = "";
