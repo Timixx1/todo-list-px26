@@ -6,9 +6,14 @@
     <title>PX26 Todo List</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="light">
     <main class="todo-container">
-        <h1>PX26 Todo List</h1>
+        <div class="todo-header">
+            <h1>PX26 Todo List</h1>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+                <span class="theme-toggle-label">Dark mode</span>
+            </button>
+        </div>
         <form class="input-section" id="todo-form">
             <input type="text" id="todo-input" placeholder="Add a new task..." aria-label="New task" required>
             <button id="add-btn" type="submit">Add</button>
