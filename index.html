@@ -18,7 +18,8 @@
             <input type="text" id="todo-input" placeholder="Add a new task..." aria-label="New task" required>
             <button id="add-btn" type="submit">Add</button>
         </form>
-        <ul id="todo-list">
+        <ul id="todo-list" aria-live="polite">
+            <li class="todo-empty-state" id="todo-empty-state">No tasks yet. Add your first item.</li>
         </ul>
     </main>
     <footer class="site-footer">
