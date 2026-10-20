@@ -25,4 +25,6 @@ Open `index.html` in a web browser. No installation is required.
 - `style.css` contains the layout and visual styles.
 - `script.js` handles adding, updating, and deleting tasks.
 
-Tasks are kept in the current page only. They are cleared when the page is refreshed.
+Tasks (including their status) and the selected theme are saved in the browser's
+`localStorage`, so they remain after a page refresh in the same browser. Clearing
+the browser's site data removes them.
