@@ -1,44 +1,30 @@
-  
 const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 const todoList = document.getElementById("todo-list");
 const todoEmptyState = document.getElementById("todo-empty-state");
 const themeToggle = document.getElementById("theme-toggle");
 const themeLabel = document.querySelector(".theme-toggle-label");
+const todosStorageKey = "px26-todos";
+const validStatuses = ["To Do", "In Progress", "Done"];
 
 const updateEmptyState = () => {
     const hasTasks = todoList.querySelector(".todo-item");
     todoEmptyState.hidden = Boolean(hasTasks);
 };
 
-const applyTheme = (theme) => {
-    document.body.dataset.theme = theme;
-    localStorage.setItem("px26-theme", theme);
+const saveTodos = () => {
+    const todos = [...todoList.querySelectorAll(".todo-item")].map((todoItem) => ({
+        text: todoItem.querySelector(".todo-text").textContent,
+        status: todoItem.dataset.status,
+    }));
 
-    const isDark = theme === "dark";
-    themeToggle.setAttribute("aria-pressed", String(isDark));
-    themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
+    localStorage.setItem(todosStorageKey, JSON.stringify(todos));
 };
 
-const savedTheme = localStorage.getItem("px26-theme") || "light";
-applyTheme(savedTheme);
-
-themeToggle.addEventListener("click", () => {
-    const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
-});
-
-todoForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const taskText = todoInput.value.trim();
-    if (!taskText) {
-        return;
-    }
-
+const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }) => {
     const todoItem = document.createElement("li");
     todoItem.className = "todo-item";
-    todoItem.dataset.status = "To Do";
+    todoItem.dataset.status = taskStatus;
 
     const text = document.createElement("span");
     text.className = "todo-text";
@@ -48,15 +34,17 @@ todoForm.addEventListener("submit", (event) => {
     status.className = "todo-status";
     status.setAttribute("aria-label", `Status for ${taskText}`);
 
-    ["To Do", "In Progress", "Done"].forEach((statusName) => {
+    validStatuses.forEach((statusName) => {
         const option = document.createElement("option");
         option.value = statusName;
         option.textContent = statusName;
+        option.selected = statusName === taskStatus;
         status.append(option);
     });
 
     status.addEventListener("change", () => {
         todoItem.dataset.status = status.value;
+        saveTodos();
     });
 
     const deleteButton = document.createElement("button");
@@ -67,6 +55,7 @@ todoForm.addEventListener("submit", (event) => {
     deleteButton.addEventListener("click", () => {
         todoItem.remove();
         updateEmptyState();
+        saveTodos();
     });
 
     const editInput = document.createElement("input");
@@ -130,6 +119,7 @@ todoForm.addEventListener("submit", (event) => {
         editButton.setAttribute("aria-label", `Edit ${updatedText}`);
         deleteButton.setAttribute("aria-label", `Delete ${updatedText}`);
         setEditing(false);
+        saveTodos();
     };
 
     editInput.addEventListener("input", () => {
@@ -150,9 +140,62 @@ todoForm.addEventListener("submit", (event) => {
 
     todoItem.append(text, editInput, status, actions);
     todoList.append(todoItem);
+};
+
+const loadTodos = () => {
+    const savedTodos = localStorage.getItem(todosStorageKey);
+    if (!savedTodos) {
+        return;
+    }
+
+    try {
+        const todos = JSON.parse(savedTodos);
+        if (!Array.isArray(todos) || !todos.every((todo) =>
+            todo &&
+            typeof todo.text === "string" &&
+            todo.text.trim() &&
+            validStatuses.includes(todo.status)
+        )) {
+            throw new Error("Saved tasks have an invalid format.");
+        }
+
+        todos.forEach(createTodoItem);
+    } catch (error) {
+        console.error("Could not load saved tasks:", error);
+    }
+};
+
+const applyTheme = (theme) => {
+    document.body.dataset.theme = theme;
+    localStorage.setItem("px26-theme", theme);
+
+    const isDark = theme === "dark";
+    themeToggle.setAttribute("aria-pressed", String(isDark));
+    themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
+};
+
+const savedTheme = localStorage.getItem("px26-theme") || "light";
+applyTheme(savedTheme);
+
+themeToggle.addEventListener("click", () => {
+    const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+    applyTheme(nextTheme);
+});
+
+todoForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const taskText = todoInput.value.trim();
+    if (!taskText) {
+        return;
+    }
+
+    createTodoItem({ text: taskText });
     updateEmptyState();
+    saveTodos();
     todoInput.value = "";
     todoInput.focus();
 });
 
+loadTodos();
 updateEmptyState();
