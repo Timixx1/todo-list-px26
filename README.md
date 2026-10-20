@@ -17,6 +17,7 @@ PX26 Todo List is a lightweight task manager for everyday planning. Add tasks, e
 - **Light and dark themes** — switch the interface theme.
 - **Browser storage** — tasks and theme preference are saved in local storage.
 - **Responsive layout** — use the app on desktop and mobile screens.
+- **Subtle motion** — tasks ease in when added and collapse smoothly when removed.
 
 ## Technology stack
 
