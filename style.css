@@ -325,8 +325,16 @@ h1 {
     border-radius: 999px;
     background: var(--bg);
     color: var(--text);
+    cursor: default;
     font-size: 12px;
     font-weight: 500;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.about-tags span:hover {
+    transform: translateY(-3px);
+    border-color: var(--muted);
+    box-shadow: 0 5px 12px rgba(14, 17, 22, 0.12);
 }
 
 .team-grid {
