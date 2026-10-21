@@ -42,6 +42,14 @@ PX26 Todo List is a student team project created for school to practice web deve
 
 Spark is PX26's charcoal-colored code dragon. When there are no tasks, he keeps the empty state company; when the list fills up, he steps aside and lets the work take focus.
 
+## Motion design demo
+
+See PX26 in action:
+
+<video src="./assets/px26-motion-demo.mp4" controls width="100%"></video>
+
+If the video player is not available, [open the motion design demo](./assets/px26-motion-demo.mp4).
+
 ## Getting started
 
 No dependencies, package installs, or build commands needed.
@@ -70,6 +78,7 @@ No dependencies, package installs, or build commands needed.
 | `assets/spark.png` | Spark's transparent mascot illustration |
 | `assets/spark-search.png` | Spark's search empty-state illustration |
 | `assets/spark-showcase.png` | Decorative Spark artwork used in this README |
+| `assets/px26-motion-demo.mp4` | Motion design demo of the app |
 
 ## The team
 
