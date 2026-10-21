@@ -62,8 +62,10 @@ No dependencies, package installs, or build commands needed.
 | File | Purpose |
 |---|---|
 | `index.html` | App structure and content |
+| `about.html` | Project, team, and mascot information |
 | `style.css` | Layout, typography, themes, and responsive styles |
 | `script.js` | Task management and local storage |
+| `theme.js` | Shared light/dark theme toggle |
 | `assets/spark.png` | Spark's transparent mascot illustration |
 | `assets/spark-showcase.png` | Decorative Spark artwork used in this README |
 

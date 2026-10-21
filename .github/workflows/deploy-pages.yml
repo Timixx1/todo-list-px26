@@ -22,7 +22,7 @@ jobs:
       - name: Prepare site
         run: |
           mkdir _site
-          cp index.html style.css script.js _site/
+          cp index.html about.html style.css script.js theme.js _site/
           cp -r assets _site/assets
 
       - name: Upload site artifact
