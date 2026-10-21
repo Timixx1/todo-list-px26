@@ -2,13 +2,45 @@ const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 const todoList = document.getElementById("todo-list");
 const todoEmptyState = document.getElementById("todo-empty-state");
+const todoTools = document.getElementById("todo-tools");
+const todoSearch = document.getElementById("todo-search");
+const todoNoResults = document.getElementById("todo-no-results");
+const todoFilters = [...document.querySelectorAll(".todo-filter")];
 const todosStorageKey = "px26-todos";
 const validStatuses = ["To Do", "In Progress", "Done"];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let activeFilter = "all";
 
-const updateEmptyState = () => {
-    const hasTasks = todoList.querySelector(".todo-item");
-    todoEmptyState.hidden = Boolean(hasTasks);
+const updateTodoView = () => {
+    const todos = [...todoList.querySelectorAll(".todo-item:not(.is-removing)")];
+    const query = todoSearch.value.trim().toLocaleLowerCase();
+    let visibleCount = 0;
+
+    todoTools.hidden = todos.length === 0;
+    todoEmptyState.hidden = todos.length > 0;
+
+    todos.forEach((todoItem) => {
+        const isDone = todoItem.dataset.status === "Done";
+        const matchesFilter = activeFilter === "all" ||
+            (activeFilter === "active" && !isDone) ||
+            (activeFilter === "done" && isDone);
+        const matchesSearch = todoItem.querySelector(".todo-text").textContent
+            .toLocaleLowerCase()
+            .includes(query);
+        const isVisible = matchesFilter && matchesSearch;
+
+        todoItem.hidden = !isVisible;
+        visibleCount += Number(isVisible);
+    });
+
+    todoNoResults.hidden = todos.length === 0 || visibleCount > 0;
+    document.getElementById("todo-count-all").textContent = todos.length;
+    document.getElementById("todo-count-active").textContent = todos.filter((todoItem) =>
+        todoItem.dataset.status !== "Done"
+    ).length;
+    document.getElementById("todo-count-done").textContent = todos.filter((todoItem) =>
+        todoItem.dataset.status === "Done"
+    ).length;
 };
 
 const saveTodos = () => {
@@ -50,6 +82,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
 
     status.addEventListener("change", () => {
         todoItem.dataset.status = status.value;
+        updateTodoView();
         saveTodos();
     });
 
@@ -61,7 +94,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
     deleteButton.addEventListener("click", () => {
         if (prefersReducedMotion.matches) {
             todoItem.remove();
-            updateEmptyState();
+            updateTodoView();
             saveTodos();
             return;
         }
@@ -74,7 +107,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
         todoItem.addEventListener("transitionend", (event) => {
             if (event.target === todoItem && event.propertyName === "height") {
                 todoItem.remove();
-                updateEmptyState();
+                updateTodoView();
             }
         });
         saveTodos();
@@ -141,6 +174,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
         editButton.setAttribute("aria-label", `Edit ${updatedText}`);
         deleteButton.setAttribute("aria-label", `Delete ${updatedText}`);
         setEditing(false);
+        updateTodoView();
         saveTodos();
     };
 
@@ -196,11 +230,32 @@ todoForm.addEventListener("submit", (event) => {
     }
 
     createTodoItem({ text: taskText }, { animate: true });
-    updateEmptyState();
+    todoSearch.value = "";
+    activeFilter = "all";
+    todoFilters.forEach((filterButton) => {
+        const isActive = filterButton.dataset.filter === activeFilter;
+        filterButton.classList.toggle("is-active", isActive);
+        filterButton.setAttribute("aria-pressed", String(isActive));
+    });
+    updateTodoView();
     saveTodos();
     todoInput.value = "";
     todoInput.focus();
 });
 
+todoSearch.addEventListener("input", updateTodoView);
+
+todoFilters.forEach((filterButton) => {
+    filterButton.addEventListener("click", () => {
+        activeFilter = filterButton.dataset.filter;
+        todoFilters.forEach((button) => {
+            const isActive = button === filterButton;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+        updateTodoView();
+    });
+});
+
 loadTodos();
-updateEmptyState();
+updateTodoView();
