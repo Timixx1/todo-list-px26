@@ -48,7 +48,7 @@ See PX26 in action:
 
 <video src="https://raw.githubusercontent.com/Timixx1/todo-list-px26/main/assets/px26-motion-demo.mp4" controls width="100%"></video>
 
-If the video player is not available, [open the motion design demo](https://github.com/Timixx1/todo-list-px26/blob/main/assets/px26-motion-demo.mp4).
+If the video player is not available, [open the motion design demo](https://raw.githubusercontent.com/Timixx1/todo-list-px26/main/assets/px26-motion-demo.mp4).
 
 ## Getting started
 
