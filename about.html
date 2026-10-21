@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about PX26 Todo List, a student-built task manager, its team, and mascot Spark.">
+    <title>About PX26 | PX26 Todo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-about" data-theme="light">
+    <main class="about-container">
+        <header class="about-header">
+            <div>
+                <p class="eyebrow">A student team project</p>
+                <h1>About PX26</h1>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
+                <span class="theme-toggle-label">Dark mode</span>
+            </button>
+        </header>
+
+        <section class="about-intro">
+            <div>
+                <h2>Make a plan. Tame the to-do.</h2>
+                <p>PX26 Todo List is a school project built by four students to practice web development, teamwork, and turning an idea into a useful app.</p>
+                <a class="about-app-link" href="index.html#todo-input">Try the task list <span aria-hidden="true">→</span></a>
+            </div>
+            <img class="about-mascot" src="assets/spark-showcase.png" alt="Spark, the PX26 dragon mascot surrounded by blue sparkles">
+        </section>
+
+        <section class="about-section">
+            <h2>Small, useful, and ready to go</h2>
+            <p>Add tasks, edit them as plans change, track progress, and switch between light and dark themes. Tasks and your theme preference are saved in your browser, and no installation or build step is needed.</p>
+            <div class="about-tags" aria-label="Project technologies">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Vanilla JavaScript</span>
+                <span>Local storage</span>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>Meet the team</h2>
+            <div class="team-grid">
+                <article class="team-card">
+                    <h3>Timurs Stroganovs</h3>
+                    <p>Team Lead Developer</p>
+                </article>
+                <article class="team-card">
+                    <h3>Artjoms Basalgins</h3>
+                    <p>FrontEnd Developer</p>
+                </article>
+                <article class="team-card">
+                    <h3>Damirs Skutans</h3>
+                    <p>JavaScript Developer</p>
+                </article>
+                <article class="team-card">
+                    <h3>Vadims Cehnoveckis</h3>
+                    <p>Project Demonstrator &amp; QA Tester</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="spark-note">
+            <img src="assets/spark.png" alt="" aria-hidden="true">
+            <div>
+                <h2>And this is Spark</h2>
+                <p>Our little code dragon keeps the empty state company and gives the project a character of its own.</p>
+            </div>
+        </section>
+    </main>
+
+    <nav class="workspace-rail" aria-label="Workspace">
+        <a class="workspace-rail__button workspace-rail__button--brand" href="index.html" aria-label="PX26 home" title="PX26 home">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 3 3 10v10a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10z"></path>
+            </svg>
+        </a>
+        <span class="workspace-rail__separator" aria-hidden="true"></span>
+        <a class="workspace-rail__button" href="index.html#todo-input" aria-label="Tasks" title="Tasks">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 6h11M9 12h11M9 18h11"></path>
+                <path d="m3 6 1 1 2-2M3 12l1 1 2-2M3 18l1 1 2-2"></path>
+            </svg>
+        </a>
+        <a class="workspace-rail__button workspace-rail__button--active" href="about.html" aria-label="About PX26" title="About PX26" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 11v5M12 8h.01"></path>
+            </svg>
+        </a>
+    </nav>
+
+    <footer class="site-footer">
+        <a class="github-link" href="https://github.com/Timixx1/todo-list-px26" aria-label="PX26 Todo List on GitHub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 .1.77 2.03 3.6 1.44.1-.72.4-1.2.72-1.48-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3.01 0 4.29-2.61 5.23-5.1 5.5.4.35.76 1.03.76 2.08v3.12c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"></path>
+            </svg>
+            <span>GitHub</span>
+        </a>
+        <span class="footer-divider" aria-hidden="true"></span>
+        <small>© 2026 PX26. All rights reserved.</small>
+    </footer>
+    <script src="theme.js"></script>
+</body>
+</html>

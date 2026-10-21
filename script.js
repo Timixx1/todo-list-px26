@@ -2,8 +2,6 @@ const todoForm = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo-input");
 const todoList = document.getElementById("todo-list");
 const todoEmptyState = document.getElementById("todo-empty-state");
-const themeToggle = document.getElementById("theme-toggle");
-const themeLabel = document.querySelector(".theme-toggle-label");
 const todosStorageKey = "px26-todos";
 const validStatuses = ["To Do", "In Progress", "Done"];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -188,23 +186,6 @@ const loadTodos = () => {
         console.error("Could not load saved tasks:", error);
     }
 };
-
-const applyTheme = (theme) => {
-    document.body.dataset.theme = theme;
-    localStorage.setItem("px26-theme", theme);
-
-    const isDark = theme === "dark";
-    themeToggle.setAttribute("aria-pressed", String(isDark));
-    themeLabel.textContent = isDark ? "Light mode" : "Dark mode";
-};
-
-const savedTheme = localStorage.getItem("px26-theme") || "light";
-applyTheme(savedTheme);
-
-themeToggle.addEventListener("click", () => {
-    const nextTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
-});
 
 todoForm.addEventListener("submit", (event) => {
     event.preventDefault();
