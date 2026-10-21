@@ -21,10 +21,34 @@
             <input type="text" id="todo-input" placeholder="Add a new task..." aria-label="New task" required>
             <button id="add-btn" type="submit">Add</button>
         </form>
+        <section class="todo-tools" id="todo-tools" aria-label="Find and filter tasks" hidden>
+            <label class="todo-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="m16 16 4 4"></path>
+                </svg>
+                <input id="todo-search" type="search" placeholder="Search tasks..." aria-label="Search tasks">
+            </label>
+            <div class="todo-filters" role="group" aria-label="Filter tasks">
+                <button class="todo-filter is-active" type="button" data-filter="all" aria-pressed="true">
+                    All <span class="todo-filter-count" id="todo-count-all">0</span>
+                </button>
+                <button class="todo-filter" type="button" data-filter="active" aria-pressed="false">
+                    Active <span class="todo-filter-count" id="todo-count-active">0</span>
+                </button>
+                <button class="todo-filter" type="button" data-filter="done" aria-pressed="false">
+                    Done <span class="todo-filter-count" id="todo-count-done">0</span>
+                </button>
+            </div>
+        </section>
         <ul id="todo-list" aria-live="polite">
             <li class="todo-empty-state" id="todo-empty-state">
                 <img class="spark-mascot" src="assets/spark.png" alt="Spark, the PX26 dragon mascot">
                 <span>No tasks yet. Add your first item.</span>
+            </li>
+            <li class="todo-no-results" id="todo-no-results" hidden>
+                <img class="spark-search-mascot" src="assets/spark-search.png" alt="" aria-hidden="true">
+                <span>No tasks match your search or filter.</span>
             </li>
         </ul>
     </main>

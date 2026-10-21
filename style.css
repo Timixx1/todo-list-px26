@@ -390,6 +390,110 @@ h1 {
     gap: 10px;
 }
 
+.todo-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.todo-tools[hidden],
+.todo-item[hidden],
+.todo-no-results[hidden] {
+    display: none;
+}
+
+.todo-search {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex: 1;
+    min-width: 100px;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--surface-border);
+    border-radius: 7px;
+    background: var(--bg-input);
+    color: var(--muted);
+    box-sizing: border-box;
+}
+
+.todo-search svg {
+    flex: 0 0 auto;
+    width: 15px;
+    height: 15px;
+}
+
+#todo-search {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 12px;
+}
+
+#todo-search::placeholder {
+    color: var(--placeholder);
+}
+
+.todo-search:focus-within {
+    outline: 2px solid var(--soft-strong);
+    outline-offset: 2px;
+}
+
+.todo-search input::-webkit-search-cancel-button {
+    cursor: pointer;
+}
+
+.todo-filters {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--surface-border);
+    border-radius: 9px;
+    background: var(--bg);
+}
+
+.todo-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-height: 26px;
+    padding: 0 7px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.todo-filter:hover {
+    color: var(--text);
+}
+
+.todo-filter.is-active {
+    background: var(--bg-strong);
+    color: var(--text);
+    box-shadow: 0 1px 2px var(--shadow);
+}
+
+.todo-filter-count {
+    color: var(--placeholder);
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+}
+
 #todo-input {
     flex: 1;
     min-width: 0;
@@ -451,6 +555,25 @@ button:focus-visible {
     font-size: 13px;
     text-align: center;
     list-style: none;
+}
+
+.todo-no-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 16px 0;
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.spark-search-mascot {
+    display: block;
+    width: 118px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 8px;
 }
 
 .spark-mascot {
@@ -629,6 +752,19 @@ button:focus-visible {
 
     .todo-container {
         padding: 20px;
+    }
+
+    .todo-tools {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .todo-search {
+        flex: 0 0 34px;
+    }
+
+    .todo-filters {
+        align-self: flex-start;
     }
 }
 

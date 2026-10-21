@@ -32,6 +32,7 @@ PX26 Todo List is a student team project created for school to practice web deve
 - **Capture tasks** quickly with the add form.
 - **Edit task names** whenever plans change.
 - **Track progress** with `To Do`, `In Progress`, and `Done` statuses.
+- **Find tasks quickly** with live search and All, Active, and Done filters.
 - **Keep your list across visits** with browser local storage.
 - **Switch themes** between light and dark.
 - **Use it on different screens** with a responsive layout.
@@ -67,6 +68,7 @@ No dependencies, package installs, or build commands needed.
 | `script.js` | Task management and local storage |
 | `theme.js` | Shared light/dark theme toggle |
 | `assets/spark.png` | Spark's transparent mascot illustration |
+| `assets/spark-search.png` | Spark's search empty-state illustration |
 | `assets/spark-showcase.png` | Decorative Spark artwork used in this README |
 
 ## The team
