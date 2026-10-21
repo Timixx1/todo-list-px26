@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PX26 Todo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-theme="light">
@@ -19,7 +22,10 @@
             <button id="add-btn" type="submit">Add</button>
         </form>
         <ul id="todo-list" aria-live="polite">
-            <li class="todo-empty-state" id="todo-empty-state">No tasks yet. Add your first item.</li>
+            <li class="todo-empty-state" id="todo-empty-state">
+                <img class="spark-mascot" src="assets/spark.png" alt="Spark, the PX26 dragon mascot">
+                <span>No tasks yet. Add your first item.</span>
+            </li>
         </ul>
     </main>
     <footer class="site-footer">

@@ -1,71 +1,83 @@
-# PX26 Todo List
+<div align="center">
+  <img src="./assets/spark-showcase.png" alt="Spark, the PX26 dragon mascot, surrounded by blue sparkles" width="200">
 
-**A clean, responsive task manager built by a four-person team.**
+  <h1>PX26 Todo List</h1>
 
-![PX26 Todo List interface illustration](https://i.ibb.co/BVW24Thw/image.png)
+  <p><strong>Make a plan. Tame the to-do.</strong></p>
+  <p>A school project built by a team of four students to learn, collaborate, and create a useful web app.</p>
+  <p>A lightweight task manager with a little help from Spark, our resident code dragon.</p>
 
-## About
+  <p>
+    <a href="https://timixx1.github.io/todo-list-px26/"><strong>Open the live app →</strong></a>
+    &nbsp;·&nbsp;
+    <a href="#getting-started">Run it locally</a>
+  </p>
 
-PX26 Todo List is a lightweight task manager for everyday planning. Add tasks, edit their details, track progress, and switch between light and dark themes in a responsive interface.
+  <p>
+    <img src="https://img.shields.io/badge/HTML5-markup-E34F26?style=flat-square&logo=html5&logoColor=white" alt="Built with HTML5">
+    <img src="https://img.shields.io/badge/CSS3-styles-1572B6?style=flat-square&logo=css3&logoColor=white" alt="Styled with CSS3">
+    <img src="https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?style=flat-square&logo=javascript&logoColor=18181B" alt="Built with vanilla JavaScript">
+    <img src="https://img.shields.io/badge/No%20build%20step-ready-22C55E?style=flat-square" alt="No build step required">
+  </p>
+</div>
 
-[Open the live app](https://timixx1.github.io/todo-list-px26/)
+---
 
-## Features
+## Your tasks, under control
 
-- **Create tasks** — add tasks using the input form.
-- **Edit tasks** — update a task while preserving its current status.
-- **Track progress** — choose To Do, In Progress, or Done.
-- **Remove tasks** — delete tasks you no longer need.
-- **Light and dark themes** — switch the interface theme.
-- **Browser storage** — tasks and theme preference are saved in local storage.
-- **Responsive layout** — use the app on desktop and mobile screens.
-- **Subtle motion** — tasks ease in when added and collapse smoothly when removed.
+PX26 Todo List is a student team project created for school to practice web development and teamwork by building something useful. It keeps everyday planning simple: add a task, update it as work moves along, and clear it when it's done. Your tasks stay in your browser, and the interface supports both light and dark themes.
 
-## Technology stack
+## What you can do
 
-<p>
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=18181B" alt="JavaScript">
-</p>
+- **Capture tasks** quickly with the add form.
+- **Edit task names** whenever plans change.
+- **Track progress** with `To Do`, `In Progress`, and `Done` statuses.
+- **Keep your list across visits** with browser local storage.
+- **Switch themes** between light and dark.
+- **Use it on different screens** with a responsive layout.
+- **Get a little encouragement** from Spark when your list is empty.
 
-| Technology | Use |
-|---|---|
-| HTML | Page structure and content |
-| CSS | Layout, responsive styling, and themes |
-| JavaScript | Task interactions and local storage |
+## Meet Spark
 
-The project uses vanilla JavaScript and requires no installation.
+Spark is PX26's charcoal-colored code dragon. When there are no tasks, he keeps the empty state company; when the list fills up, he steps aside and lets the work take focus.
 
-## Run locally
+## Getting started
+
+No dependencies, package installs, or build commands needed.
 
 1. Clone or download this repository.
-2. Open `index.html` in your browser.
+2. Open `index.html` in a browser.
 3. Add your first task.
 
-## Team
+## Built with
 
-The project was created by four people:
+| Technology | Role |
+|---|---|
+| HTML | Page structure |
+| CSS | Responsive layout, themes, and motion |
+| JavaScript | Task interactions and browser storage |
+
+## Project files
+
+| File | Purpose |
+|---|---|
+| `index.html` | App structure and content |
+| `style.css` | Layout, typography, themes, and responsive styles |
+| `script.js` | Task management and local storage |
+| `assets/spark.png` | Spark's transparent mascot illustration |
+| `assets/spark-showcase.png` | Decorative Spark artwork used in this README |
+
+## The team
 
 | Team member | AKA | Role |
 |---|---|---|
 | Timurs Stroganovs | Timixx | Team Lead Developer |
 | Artjoms Basalgins | basik0bas | FrontEnd Developer |
 | Damirs Skutans | damirsskutans17-lang | JavaScript Developer |
-| Vadims Cehnoveckis | - | Project Demonstrator, QA Tester |
+| Vadims Cehnoveckis | — | Project Demonstrator, QA Tester |
 
-## Teacher
+---
 
-Nikita Akopjans — [nikita.akopjans@gmail.com](mailto:nikita.akopjans@gmail.com)
-
-## Project structure
-
-| File | Purpose |
-|---|---|
-| `index.html` | Page structure and content |
-| `style.css` | Layout, responsive styles, and themes |
-| `script.js` | Task interactions and browser storage |
-
-## Repository
-
-[View PX26 Todo List on GitHub](https://github.com/Timixx1/todo-list-px26)
+<div align="center">
+  Made by the PX26 team · <a href="https://github.com/Timixx1/todo-list-px26">View the repository</a>
+</div>
