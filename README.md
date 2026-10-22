@@ -58,6 +58,12 @@ No dependencies, package installs, or build commands needed.
 2. Open `index.html` in a browser.
 3. Add your first task.
 
+## Manual test scenarios
+
+1. **Add and save a task:** Enter a task and select **Add**. Confirm it appears in the list, then refresh the page and confirm it is still there.
+2. **Update status and filter:** Create tasks with different statuses. Change one to **Done**, select the **Done** filter, and confirm only completed tasks are shown. Select **Active** and confirm completed tasks are hidden.
+3. **Edit and delete a task:** Edit a task name and save it. Confirm the new name remains after refreshing. Delete the task and confirm it disappears; when the last task is deleted, the Spark empty state should appear.
+
 ## Built with
 
 | Technology | Role |
@@ -82,12 +88,12 @@ No dependencies, package installs, or build commands needed.
 
 ## The team
 
-| Team member | AKA | Role |
+| Team member | AKA | Role and contribution |
 |---|---|---|
-| Timurs Stroganovs | Timixx | Team Lead Developer |
-| Artjoms Basalgins | basik0bas | FrontEnd Developer |
-| Damirs Skutans | damirsskutans17-lang | JavaScript Developer |
-| Vadims Cehnoveckis | — | Project Demonstrator, QA Tester |
+| Timurs Stroganovs | Timixx | Team Lead Developer — coordinated the team and guided the project development. |
+| Artjoms Basalgins | basik0bas | FrontEnd Developer — built and styled the user interface and responsive layout. |
+| Damirs Skutans | damirsskutans17-lang | JavaScript Developer — implemented task interactions, status changes, search, filters, and browser storage. |
+| Vadims Cehnoveckis | — | Project Demonstrator, QA Tester — checked the app and prepared its demonstration. |
 
 ---
 
