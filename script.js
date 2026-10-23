@@ -12,7 +12,7 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 let activeFilter = "all";
 
 const updateTodoView = () => {
-    const todos = [...todoList.querySelectorAll(".todo-item:not(.is-removing)")];
+    const todos = [...todoList.querySelectorAll(".todo-item:not(.is-removing):not(.is-delete-pending)")];
     const query = todoSearch.value.trim().toLocaleLowerCase();
     let visibleCount = 0;
 
@@ -86,32 +86,81 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
         saveTodos();
     });
 
+    const deleteConfirmation = document.createElement("div");
+    deleteConfirmation.className = "todo-delete-confirmation";
+    deleteConfirmation.hidden = true;
+    deleteConfirmation.setAttribute("aria-live", "polite");
+    deleteConfirmation.setAttribute("role", "status");
+
+    const deleteMessage = document.createElement("span");
+    deleteMessage.className = "todo-delete-message";
+
+    const deleteCountdown = document.createElement("span");
+    deleteCountdown.className = "todo-delete-countdown";
+
+    const undoDeleteButton = document.createElement("button");
+    undoDeleteButton.type = "button";
+    undoDeleteButton.className = "todo-undo-delete";
+    undoDeleteButton.textContent = "Don't delete";
+
+    deleteConfirmation.append(deleteMessage, deleteCountdown, undoDeleteButton);
+
+    let deleteTimeoutId;
+    let deleteIntervalId;
+
     const deleteButton = document.createElement("button");
     deleteButton.type = "button";
     deleteButton.className = "todo-delete";
     deleteButton.textContent = "×";
     deleteButton.setAttribute("aria-label", `Delete ${taskText}`);
+
+    const completeDelete = () => {
+        window.clearTimeout(deleteTimeoutId);
+        window.clearInterval(deleteIntervalId);
+        deleteConfirmation.hidden = true;
+        todoItem.remove();
+        updateTodoView();
+        saveTodos();
+    };
+
+    const cancelDelete = () => {
+        window.clearTimeout(deleteTimeoutId);
+        window.clearInterval(deleteIntervalId);
+        deleteConfirmation.hidden = true;
+        todoItem.classList.remove("is-delete-pending");
+        todoItem.style.height = "";
+        updateTodoView();
+        saveTodos();
+        deleteButton.focus();
+    };
+
     deleteButton.addEventListener("click", () => {
-        if (prefersReducedMotion.matches) {
-            todoItem.remove();
-            updateTodoView();
-            saveTodos();
-            return;
+        let secondsRemaining = 5;
+        if (!prefersReducedMotion.matches) {
+            todoItem.style.height = `${todoItem.offsetHeight}px`;
+            void todoItem.offsetHeight;
+            todoItem.classList.add("is-delete-pending");
+            todoItem.style.height = "0";
+        } else {
+            todoItem.classList.add("is-delete-pending");
         }
 
-        deleteButton.disabled = true;
-        todoItem.style.height = `${todoItem.offsetHeight}px`;
-        void todoItem.offsetHeight;
-        todoItem.classList.add("is-removing");
-        todoItem.style.height = "0";
-        todoItem.addEventListener("transitionend", (event) => {
-            if (event.target === todoItem && event.propertyName === "height") {
-                todoItem.remove();
-                updateTodoView();
+        updateTodoView();
+        deleteMessage.textContent = "Delete this task?";
+        deleteCountdown.textContent = `Removing in ${secondsRemaining}s`;
+        deleteConfirmation.hidden = false;
+        document.body.append(deleteConfirmation);
+        undoDeleteButton.focus();
+
+        deleteIntervalId = window.setInterval(() => {
+            secondsRemaining -= 1;
+            if (secondsRemaining > 0) {
+                deleteCountdown.textContent = `Removing in ${secondsRemaining}s`;
             }
-        });
-        saveTodos();
+        }, 1000);
+        deleteTimeoutId = window.setTimeout(completeDelete, 5000);
     });
+    undoDeleteButton.addEventListener("click", cancelDelete);
 
     const editInput = document.createElement("input");
     editInput.className = "todo-edit-input";
@@ -195,6 +244,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
     cancelButton.addEventListener("click", () => setEditing(false));
 
     todoItem.append(text, editInput, status, actions);
+    document.body.append(deleteConfirmation);
     todoList.append(todoItem);
 };
 
