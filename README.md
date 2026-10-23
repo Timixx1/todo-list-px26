@@ -33,6 +33,7 @@ PX26 Todo List is a student team project created for school to practice web deve
 - **Edit task names** whenever plans change.
 - **Track progress** with `To Do`, `In Progress`, and `Done` statuses.
 - **Find tasks quickly** with live search and All, Active, and Done filters.
+- **Choose a list or Kanban board** and drag tasks between status columns.
 - **Keep your list across visits** with browser local storage.
 - **Switch themes** between light and dark.
 - **Use it on different screens** with a responsive layout.
@@ -61,7 +62,7 @@ No dependencies, package installs, or build commands needed.
 ## Manual test scenarios
 
 1. **Add and save a task:** Enter a task and select **Add**. Confirm it appears in the list, then refresh the page and confirm it is still there.
-2. **Update status and filter:** Create tasks with different statuses. Change one to **Done**, select the **Done** filter, and confirm only completed tasks are shown. Select **Active** and confirm completed tasks are hidden.
+2. **Update status and filter:** Create tasks with different statuses. Change one to **Done**, select the **Done** filter, and confirm only completed tasks are shown. Switch to **Board**, drag a task to another status column, and confirm its status changes. Select **Active** and confirm completed tasks are hidden.
 3. **Edit and delete a task:** Edit a task name and save it. Confirm the new name remains after refreshing. Delete the task and confirm it disappears; when the last task is deleted, the Spark empty state should appear.
 
 ## Built with
