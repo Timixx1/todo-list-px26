@@ -609,13 +609,15 @@ button:focus-visible {
     width: 100%;
     max-width: 840px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    align-items: start;
+    align-items: stretch;
     gap: 14px;
     margin: 24px auto 0;
 }
 
 .kanban-column {
     position: relative;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     min-height: 270px;
     padding: 15px;
@@ -687,6 +689,9 @@ button:focus-visible {
 
 .kanban-column-list {
     display: grid;
+    grid-auto-rows: max-content;
+    align-content: start;
+    flex: 1;
     gap: 11px;
     min-height: 150px;
     margin: 12px 0 0;
@@ -695,7 +700,7 @@ button:focus-visible {
 }
 
 .kanban-column-empty {
-    margin: 12px 0 0;
+    margin: auto 0 0;
     padding: 12px 8px;
     border: 1px dashed var(--surface-border);
     border-radius: 9px;
@@ -742,7 +747,7 @@ button:focus-visible {
 }
 
 .kanban-board .todo-drag-handle {
-    display: inline-grid;
+    display: none;
     grid-column: 1 / -1;
     justify-self: end;
     place-items: center;
@@ -783,7 +788,7 @@ button:focus-visible {
 .kanban-board .todo-status {
     min-width: 0;
     max-width: 100%;
-    width: 124px;
+    width: 150px;
     min-height: 40px;
     padding-right: 20px;
     font-size: 11px;
@@ -791,6 +796,15 @@ button:focus-visible {
 
 .kanban-board .todo-actions {
     justify-content: flex-end;
+    gap: 6px;
+}
+
+.kanban-board .todo-edit,
+.kanban-board .todo-delete,
+.kanban-board .todo-save,
+.kanban-board .todo-cancel {
+    min-width: 40px;
+    min-height: 40px;
 }
 
 .is-kanban-view #todo-list {
@@ -1136,12 +1150,13 @@ button:focus-visible {
     }
 
     .kanban-column-list {
+        flex: 0 1 auto;
         min-height: 8px;
         margin-top: 8px;
     }
 
     .kanban-column-empty {
-        margin-top: 8px;
+        margin: 8px 0 0;
         padding: 8px;
     }
 
@@ -1155,21 +1170,41 @@ button:focus-visible {
     }
 
     .kanban-board .todo-item {
-        gap: 9px 8px;
-        padding: 11px;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: stretch;
+        gap: 10px;
+        padding: 13px;
         border-radius: 9px;
     }
 
+    .kanban-board .todo-text,
+    .kanban-board .todo-edit-input {
+        grid-column: 1;
+    }
+
     .kanban-board .todo-status {
-        width: min(150px, 100%);
+        grid-column: 1;
+        width: 100%;
         min-height: 42px;
+        box-sizing: border-box;
         font-size: 12px;
     }
 
+    .kanban-board .todo-actions {
+        grid-column: 1;
+        justify-content: flex-end;
+        gap: 8px;
+        width: 100%;
+    }
+
     .kanban-board .todo-drag-handle {
+        display: inline-grid;
+        grid-column: 1;
+        justify-self: end;
+        width: 40px;
         min-width: 40px;
         min-height: 40px;
-        margin-bottom: -5px;
+        margin: 0;
         touch-action: none;
         user-select: none;
         -webkit-user-select: none;
@@ -1179,6 +1214,7 @@ button:focus-visible {
     .kanban-board .todo-delete,
     .kanban-board .todo-save,
     .kanban-board .todo-cancel {
+        min-width: 40px;
         min-height: 40px;
     }
 
