@@ -5,6 +5,7 @@ const todoEmptyState = document.getElementById("todo-empty-state");
 const todoTools = document.getElementById("todo-tools");
 const todoSearch = document.getElementById("todo-search");
 const todoNoResults = document.getElementById("todo-no-results");
+const kanbanMobileHint = document.querySelector(".kanban-mobile-hint");
 const todoFilters = [...document.querySelectorAll(".todo-filter")];
 const kanbanBoard = document.getElementById("kanban-board");
 const kanbanColumns = [...document.querySelectorAll(".kanban-column")];
@@ -43,6 +44,7 @@ const updateTodoView = () => {
     document.body.classList.toggle("is-kanban-view", activeView === "board" && todos.length > 0);
     todoList.hidden = activeView === "board" && todos.length > 0;
     kanbanBoard.hidden = activeView !== "board" || todos.length === 0 || visibleCount === 0;
+    kanbanMobileHint.hidden = activeView !== "board" || todos.length === 0;
     document.getElementById("todo-count-all").textContent = todos.length;
     document.getElementById("todo-count-active").textContent = todos.filter((todoItem) =>
         todoItem.dataset.status !== "Done"
@@ -166,6 +168,13 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
     deleteButton.textContent = "×";
     deleteButton.setAttribute("aria-label", `Delete ${taskText}`);
 
+    const dragHandle = document.createElement("button");
+    dragHandle.type = "button";
+    dragHandle.className = "todo-drag-handle";
+    dragHandle.textContent = "⠿";
+    dragHandle.draggable = false;
+    dragHandle.setAttribute("aria-label", `Drag ${taskText} to another status`);
+
     todoItem.draggable = activeView === "board";
     todoItem.addEventListener("dragstart", (event) => {
         if (activeView !== "board" || !event.dataTransfer) {
@@ -181,6 +190,59 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
         todoItem.classList.remove("is-dragging");
         kanbanColumns.forEach((column) => column.classList.remove("is-drop-target"));
     });
+
+    let touchDragStartY;
+    let touchDragTarget;
+
+    dragHandle.addEventListener("pointerdown", (event) => {
+        if (activeView !== "board" || event.pointerType === "mouse" || event.button !== 0) {
+            return;
+        }
+
+        event.preventDefault();
+        touchDragStartY = event.clientY;
+        touchDragTarget = null;
+        todoItem.classList.add("is-touch-dragging");
+        dragHandle.setPointerCapture(event.pointerId);
+    });
+
+    dragHandle.addEventListener("pointermove", (event) => {
+        if (!todoItem.classList.contains("is-touch-dragging")) {
+            return;
+        }
+
+        const deltaY = event.clientY - touchDragStartY;
+        todoItem.style.transform = `translate3d(0, ${deltaY}px, 0)`;
+
+        const target = document.elementFromPoint(event.clientX, event.clientY)?.closest(".kanban-column");
+        touchDragTarget = target instanceof HTMLElement ? target : null;
+        kanbanColumns.forEach((column) => {
+            column.classList.toggle("is-drop-target", column === touchDragTarget);
+        });
+    });
+
+    const finishTouchDrag = (shouldMoveTask) => {
+        if (!todoItem.classList.contains("is-touch-dragging")) {
+            return;
+        }
+
+        const newStatus = shouldMoveTask ? touchDragTarget?.dataset.status : null;
+        todoItem.classList.remove("is-touch-dragging");
+        todoItem.style.transform = "";
+        kanbanColumns.forEach((column) => column.classList.remove("is-drop-target"));
+
+        if (validStatuses.includes(newStatus) && newStatus !== todoItem.dataset.status) {
+            todoItem.dataset.status = newStatus;
+            status.value = newStatus;
+            renderTodoView();
+            saveTodos();
+        }
+
+        touchDragTarget = null;
+    };
+
+    dragHandle.addEventListener("pointerup", () => finishTouchDrag(true));
+    dragHandle.addEventListener("pointercancel", () => finishTouchDrag(false));
 
     const completeDelete = () => {
         window.clearTimeout(deleteTimeoutId);
@@ -257,7 +319,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
 
     const actions = document.createElement("div");
     actions.className = "todo-actions";
-    actions.append(editButton, saveButton, cancelButton, deleteButton);
+    actions.append(dragHandle, editButton, saveButton, cancelButton, deleteButton);
 
     const setEditing = (isEditing) => {
         todoItem.classList.toggle("is-editing", isEditing);
@@ -268,6 +330,7 @@ const createTodoItem = ({ text: taskText, status: taskStatus = "To Do" }, { anim
         saveButton.hidden = !isEditing;
         cancelButton.hidden = !isEditing;
         deleteButton.hidden = isEditing;
+        dragHandle.hidden = isEditing;
 
         if (isEditing) {
             editInput.value = text.textContent;

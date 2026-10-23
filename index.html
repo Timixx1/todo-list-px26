@@ -55,6 +55,7 @@
             <img class="spark-search-mascot" src="assets/spark-search.png" alt="" aria-hidden="true">
             <span>No tasks match your search or filter.</span>
         </div>
+        <p class="kanban-mobile-hint">Use the grip on a task card to drag it to another status.</p>
         <section class="kanban-board" id="kanban-board" aria-label="Task board" hidden>
             <section class="kanban-column" data-status="To Do" aria-label="To Do">
                 <header class="kanban-column-header">
@@ -62,7 +63,7 @@
                     <span class="kanban-column-count">0</span>
                 </header>
                 <ul class="kanban-column-list" aria-label="Tasks to do"></ul>
-                <p class="kanban-column-empty">Drop tasks here</p>
+                <p class="kanban-column-empty"><span class="kanban-drop-hint">Drop tasks here</span><span class="kanban-touch-hint">No tasks yet</span></p>
             </section>
             <section class="kanban-column" data-status="In Progress" aria-label="In Progress">
                 <header class="kanban-column-header">
@@ -70,7 +71,7 @@
                     <span class="kanban-column-count">0</span>
                 </header>
                 <ul class="kanban-column-list" aria-label="Tasks in progress"></ul>
-                <p class="kanban-column-empty">Drop tasks here</p>
+                <p class="kanban-column-empty"><span class="kanban-drop-hint">Drop tasks here</span><span class="kanban-touch-hint">No tasks yet</span></p>
             </section>
             <section class="kanban-column" data-status="Done" aria-label="Done">
                 <header class="kanban-column-header">
@@ -78,7 +79,7 @@
                     <span class="kanban-column-count">0</span>
                 </header>
                 <ul class="kanban-column-list" aria-label="Completed tasks"></ul>
-                <p class="kanban-column-empty">Drop tasks here</p>
+                <p class="kanban-column-empty"><span class="kanban-drop-hint">Drop tasks here</span><span class="kanban-touch-hint">No tasks yet</span></p>
             </section>
         </section>
     </main>
