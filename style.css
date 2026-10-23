@@ -605,7 +605,8 @@ button:focus-visible {
     animation: todo-enter 220ms ease-out both;
 }
 
-.todo-item.is-removing {
+.todo-item.is-removing,
+.todo-item.is-delete-pending {
     min-height: 0;
     overflow: hidden;
     border-bottom-width: 0;
@@ -659,6 +660,76 @@ button:focus-visible {
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
+}
+
+.todo-delete-confirmation {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    width: min(360px, calc(100vw - 32px));
+    padding: 14px 16px;
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    background: var(--bg-strong);
+    box-shadow: 0 12px 32px rgba(14, 17, 22, 0.2);
+    font-size: 12px;
+    animation: todo-notice-enter 180ms ease-out both;
+}
+
+.todo-delete-confirmation[hidden] {
+    display: none;
+}
+
+@keyframes todo-notice-enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.todo-delete-message {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.todo-delete-countdown {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.todo-undo-delete {
+    min-height: 30px;
+    margin-left: auto;
+    padding: 0 9px;
+    border: 1px solid var(--soft-strong);
+    border-radius: 6px;
+    background: var(--button-fill-alt);
+    color: var(--button-text-alt);
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.todo-undo-delete:hover {
+    background: var(--soft-strong);
+    color: var(--text-strong);
+}
+
+@media (max-width: 480px) {
+    .todo-delete-confirmation {
+        right: 16px;
+        bottom: 16px;
+    }
 }
 
 .todo-item [hidden] {
