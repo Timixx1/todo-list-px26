@@ -33,7 +33,7 @@ PX26 Todo List is a student team project created for school to practice web deve
 - **Edit task names** whenever plans change.
 - **Track progress** with `To Do`, `In Progress`, and `Done` statuses.
 - **Find tasks quickly** with live search and All, Active, and Done filters.
-- **Choose a list or Kanban board** and drag tasks between status columns.
+- **Choose a list or Kanban board** and move tasks between status columns. On phones, use the grip on a card to drag it to another column.
 - **Keep your list across visits** with browser local storage.
 - **Switch themes** between light and dark.
 - **Use it on different screens** with a responsive layout.
