@@ -40,17 +40,47 @@
                     Done <span class="todo-filter-count" id="todo-count-done">0</span>
                 </button>
             </div>
+            <div class="todo-view-toggle" role="group" aria-label="Task view">
+                <button class="todo-view-button is-active" type="button" data-view="list" aria-pressed="true">List</button>
+                <button class="todo-view-button" type="button" data-view="board" aria-pressed="false">Board</button>
+            </div>
         </section>
         <ul id="todo-list" aria-live="polite">
             <li class="todo-empty-state" id="todo-empty-state">
                 <img class="spark-mascot" src="assets/spark.png" alt="Spark, the PX26 dragon mascot">
                 <span>No tasks yet. Add your first item.</span>
             </li>
-            <li class="todo-no-results" id="todo-no-results" hidden>
-                <img class="spark-search-mascot" src="assets/spark-search.png" alt="" aria-hidden="true">
-                <span>No tasks match your search or filter.</span>
-            </li>
         </ul>
+        <div class="todo-no-results" id="todo-no-results" hidden>
+            <img class="spark-search-mascot" src="assets/spark-search.png" alt="" aria-hidden="true">
+            <span>No tasks match your search or filter.</span>
+        </div>
+        <section class="kanban-board" id="kanban-board" aria-label="Task board" hidden>
+            <section class="kanban-column" data-status="To Do" aria-label="To Do">
+                <header class="kanban-column-header">
+                    <h2>To Do</h2>
+                    <span class="kanban-column-count">0</span>
+                </header>
+                <ul class="kanban-column-list" aria-label="Tasks to do"></ul>
+                <p class="kanban-column-empty">Drop tasks here</p>
+            </section>
+            <section class="kanban-column" data-status="In Progress" aria-label="In Progress">
+                <header class="kanban-column-header">
+                    <h2>In Progress</h2>
+                    <span class="kanban-column-count">0</span>
+                </header>
+                <ul class="kanban-column-list" aria-label="Tasks in progress"></ul>
+                <p class="kanban-column-empty">Drop tasks here</p>
+            </section>
+            <section class="kanban-column" data-status="Done" aria-label="Done">
+                <header class="kanban-column-header">
+                    <h2>Done</h2>
+                    <span class="kanban-column-count">0</span>
+                </header>
+                <ul class="kanban-column-list" aria-label="Completed tasks"></ul>
+                <p class="kanban-column-empty">Drop tasks here</p>
+            </section>
+        </section>
     </main>
     <nav class="workspace-rail" aria-label="Workspace">
         <a class="workspace-rail__button workspace-rail__button--brand" href="index.html" aria-label="PX26 home" title="PX26 home">
